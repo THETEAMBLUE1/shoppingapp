@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<style>
+Body
+{
+background-color: lightblue;
+}
+input[type=text],input[type=password]
+{
+width:10%;
+margin:4px 0;
+padding:6px 10px;
+display:inline-block;
+border:2px solid blue;
+box-sizing:border-box;
+}
+button
+{
+background-color:green;
+width:5%;
+curser:pointer;
+}
+</style>
+<body>    
+    <center> <h1> Login Form </h1> </center> 
+    <center>  
+        <div class="container">   
+            <label>Username : </label>   
+            <input type="text" placeholder="Enter Username" name="username" id="LoginemailId" required><br>
+            <label>Password : </label>   
+            <input type="password" placeholder="Enter Password" name="password" id="Loginpassword" required><br>
+            <input type="checkbox"> Admin <br>   
+            <button type="submit" onclick="Login()">Login</button><br>
+        </div>     
+    </center>  
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        Login = async function () {
+            let data = {
+                "emailId": document.getElementById('LoginemailId').value,
+                "password": document.getElementById('Loginpassword').value
+            }
+            console.log(data)
+            const response = await axios.post('http://localhost:8081/login/user/login', data);
+            console.log(response);
+            if (response.status == 200) {
+                if (response.data.userId) {
+                    if (response.data.userType == "user") {
+                        window.location.href = "productdetail.html"
+                    } else if (response.data.userType == "admin") {
+                        window.location.href = "addproduct.html"
+                    }
+                } 
+            } 
+        }
+    </script>
+</body>     
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<style>
+Body
+{
+background-color: lightblue;
+}
+input[type=text],input[type=password]
+{
+width:10%;
+margin:4px 0;
+padding:6px 10px;
+display:inline-block;
+border:2px solid blue;
+box-sizing:border-box;
+}
+input[type=submit]
+{
+background-color:green;
+width:5%;
+curser:pointer;
+}
+</style>
+<body>
+  					<div class="container">
+	                   <center><h1>SIGN UP</h1>
+						<label>Signup As: </label>  
+	                     Admin<input type="radio" id="userType" name="userType" value="admin" required>
+	                     User<input type="radio" id="userType" name="userType" value="user" required><br>
+	                     <label>firstName : </label>  
+	                     <input type="text" placeholder="FirstName" name="firstName" required><br>
+	                     <label>lastName : </label>  
+	                     <input type=text placeholder="LastName" name="lastName" required><br>
+	                     <label>emailId : </label>  
+	                     <input type="email" placeholder="Email" name="emailId" required><br>
+	                     <label>password : </label>  
+	                     <input type="password" placeholder="Password" name="password" required><br>
+	                     <label>phoneNumber : </label>  
+	                     <input type="number" placeholder="Enter number" name="phoneNumber" required><br>
+	                      <label>age : </label>  
+	                     <input type="number" placeholder="Age" name="age" required><br>
+	                     <label>address : </label>  
+	                     <input type="text" placeholder="Address"  name="address" required><br>
+	                     <label>sex: </label>  
+	                     Male<input type="radio" id="sex" name="sex" value="m" required>
+	                     Female<input type="radio" id="sex" name="sex" value="f" required><br>
+	     				 <button onclick="SignUp()">Sign Up</button>
+	     			</div>
+	    				</center>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+	
+
+    <script>
+        SignUp = async function () {
+            let data = {
+		"userType": document.querySelector('input[name="userType"]:checked').value,
+                "firstName": document.getElementsByName('firstName')[0].value,
+                "lastName": document.getElementsByName('lastName')[0].value,
+		"emailId": document.getElementsByName('emailId')[0].value,
+		"password": document.getElementsByName('password')[0].value,
+		"phoneNumber": document.getElementsByName('phoneNumber')[0].value,
+                "age": document.getElementsByName('age')[0].value,
+		"address": document.getElementsByName('address')[0].value,
+                "sex": document.querySelector('input[name="sex"]:checked').value,
+                
+                
+                
+                
+                
+            }
+            console.log(data)
+            const response = await axios.post('http://localhost:8081/login/user/signup', data);
+            console.log(response);
+            if (response.status == 200) {
+                if (response.data.userId) {
+                    if (response.data.userType == "user") {
+                      window.location.href = "productpage.html"
+                    } else if (response.data.userType == "admin") {
+                        window.location.href = "addproduct.html"
+                    }
+                } 
+            } 
+        }
+
+
+    </script>
+</body>
+</html>

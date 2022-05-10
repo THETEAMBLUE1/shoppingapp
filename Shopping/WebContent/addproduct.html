@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <title>Add Product</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+</head>
+<style>
+Body
+{
+background-color: lightblue;
+}
+input[type=text],input[type=password]
+{
+width:10%;
+margin:4px 0;
+padding:6px 10px;
+display:inline-block;
+border:2px solid blue;
+box-sizing:border-box;
+}
+input[type=submit]
+{
+background-color:green;
+width:5%;
+curser:pointer;
+}
+</style>
+<center>
+<body>
+    <div class="addProduct">
+       
+            <h1>Add Product</h1>
+            <p>Name</p>
+            <input type="text" name="name" placeholder="Enter Name">
+            <p>Description</p>
+            <input type="text" name="description" placeholder="Enter Description">
+            <p>Category</p>
+            <select name="category" placeholder="Enter Category">
+                <option value="" disabled selected>Select Category</option>
+                <option value="HomeAppliance">Home Appliances</option>
+                <option value="Gadget">Gadgets</option>
+                <option value="Garment">Graments</option>
+                <option value="Footwear">Footwear</option>
+            </select>
+            <p>Sub Category</p>
+            <select name="subCategory" placeholder="Enter Sub-Category">
+                <option value="" disabled selected>Select Sub-Category</option>
+                <option value="Phone">Phone</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Memory Card">Memory Card</option>
+                <option value="Shirt">Shirt</option>
+                <option value="Chair">Chair</option>
+                <option value="Table">Table</option>
+                <option value="Bulb">Bulb</option>
+                <option value="Cleaner">Cleaner</option>
+            </select>
+            <p>Unit Price</p>
+            <input type="number" name="unitPrice" placeholder="Enter Price">
+            <p>Available Quantity</p>
+            <input type="number" name="quantity" placeholder="Enter Quantity">
+            <p>Image</p>
+            <input type="file" (change)="OnFileSelected($event)" /><br><br>
+            <button onclick="add()">Add Product</button>
+       
+        </div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+	
+
+    <script>
+        add = async function () {
+		let category = document.getElementsByName('category')[0];
+                
+		let subCategory = document.getElementsByName('subCategory')[0]
+            let data = {
+               
+		
+                
+                "name": document.getElementsByName('name')[0].value,
+                    
+		"description": document.getElementsByName('description')[0].value,
+                    
+		"category": category.options[category.selectedIndex].value,
+                    
+		"subCategory": subCategory.options[subCategory.selectedIndex].value,
+
+                "unitPrice": document.getElementsByName('unitPrice')[0].value,
+                    
+		"quantity": document.getElementsByName('quantity')[0].value
+                
+                
+                
+            }
+            console.log(data)
+            const response = await axios.post('http://localhost:9000/product/addproduct', data);
+            console.log(response);
+            if (response.status == 200) {
+                window.location.href = "productdetail.html"
+            } 
+	    
+        }
+
+
+    </script>
+ 
+</body>
+</center>
+</html>
