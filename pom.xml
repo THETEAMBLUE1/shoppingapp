@@ -28,6 +28,8 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<configuration>
+                
 		</dependency>
 
 		<dependency>
@@ -52,6 +54,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+	                        <configuration>
+                                     <mainClass>com.test.MainClass</mainClass>
+                                </configuration>
 			</plugin>
 		</plugins>
 	</build>
