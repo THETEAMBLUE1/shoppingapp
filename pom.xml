@@ -54,9 +54,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-	                        <configuration>
-                                     <mainClass>com.test.MainClass</mainClass>
-                                </configuration>
+	                        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 			</plugin>
 		</plugins>
 	</build>
